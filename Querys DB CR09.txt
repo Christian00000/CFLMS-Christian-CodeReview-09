@@ -1,0 +1,41 @@
+###1.Query to get all first and last Names from Employees
+**
+
+SELECT firstName, lastName
+FROM `name`
+INNER JOIN `employee` on fk_name = nameID;
+
+###2Query to get Count of all Marks which last name starts with M
+**
+
+SELECT DISTINCT COUNT(*) as 'Mark, last name starts with M'
+FROM `name` WHERE firstName = 'Mark'
+AND lastName LIKE 'M%'
+
+###3 Query to get the nameID from the Employees
+**
+SELECT `name`.`nameID`, `employee`.`fk_name`
+FROM `name` 
+	LEFT JOIN `employee` ON `employee`.`fk_name` = `name`.`nameID`
+
+
+###4. Query to get the Name ID, and Address from Receivers.
+**
+
+SELECT `address`.`city`, `address`.`zipCode`, `address`.`street`, `address`.`houseNumber`, `receiver`.`fk_name`
+FROM `address` 
+	LEFT JOIN `receiver` ON `receiver`.`fk_address` = `address`.`addressID`
+
+###5. Query to get the number of packages which where dropeed off on the 16-09-2020 Vienna
+**
+
+SELECT DISTINCT COUNT(*)
+FROM `packagemail` 
+	LEFT JOIN `address` ON `packagemail`.`fk_address` = `address`.`addressID`
+WHERE `packagemail`.`dropDate` = '20200916';
+
+###6 Query to get the ID of Name from receivers in Vienna
+**
+
+SELECT `receiver`.`fk_name` FROM `receiver` INNER JOIN `address` = `Wien`
+
